@@ -27,6 +27,7 @@ function Header() {
 	return (
 		<header className="flex flex-col items-center mb-20 md:mb-20">
 			<Image
+				src={thirdwebIcon}
 				alt=""
 				width={120}
 				style={{
