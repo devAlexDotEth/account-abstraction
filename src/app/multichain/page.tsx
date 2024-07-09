@@ -113,7 +113,7 @@ const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
 						</>
 					) : (
 						<p className="text-center mt-8">
-							Login to claim this Kitten on {props.dropContract.chain.name}!
+							Login to claim this Tiger on {props.dropContract.chain.name}!
 						</p>
 					)}
 				</>
