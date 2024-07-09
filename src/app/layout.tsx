@@ -6,8 +6,8 @@ import { ThirdwebProvider } from "thirdweb/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Account Abstraction examples | thirdweb",
-  description: "Account Abstraction examples using the thirdweb Connect SDK",
+  title: "Sweydaverse Genesis Drop | thirdweb",
+  description: "Sweydaverse Genesis Drop using the thirdweb Connect SDK",
 };
 
 export default function RootLayout({

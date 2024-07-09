@@ -10,7 +10,7 @@ import {
 } from "thirdweb/react";
 import { accountAbstraction, client, editionDropTokenId } from "../constants";
 import Link from "next/link";
-import { arbitrumSepolia, baseSepolia } from "thirdweb/chains";
+import { sepolia, base } from "thirdweb/chains";
 import { ThirdwebContract, getContract } from "thirdweb";
 
 const GaslessHome: React.FC = () => {
@@ -35,8 +35,8 @@ const GaslessHome: React.FC = () => {
 				<NFTClaimer
 					receiverAddress={smartAccount?.address}
 					dropContract={getContract({
-						address: "0x638263e3eAa3917a53630e61B1fBa685308024fa",
-						chain: baseSepolia,
+						address: "0x4cc9192572D4C6D4721FD13AbEa363d3274aDA92",
+						chain: sepolia,
 						client,
 					})}
 					tokenId={0n}
@@ -45,8 +45,8 @@ const GaslessHome: React.FC = () => {
 				<NFTClaimer
 					receiverAddress={smartAccount?.address}
 					dropContract={getContract({
-						address: "0x6A7a26c9a595E6893C255C9dF0b593e77518e0c3",
-						chain: arbitrumSepolia,
+						address: "0x79F07c16a7B3DC8a75F5032e5d86092deD2BcAC2",
+						chain: base,
 						client,
 					})}
 					tokenId={0n}
@@ -89,7 +89,7 @@ const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
 					{props.receiverAddress ? (
 						<>
 							<p className="font-semibold text-center my-2">
-								You own {ownedNfts?.toString() || "0"} Kittens on{" "}
+								You own {ownedNfts?.toString() || "0"} Tigers on{" "}
 								{props.dropContract.chain.name}
 							</p>
 							<TransactionButton

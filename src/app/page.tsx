@@ -27,7 +27,6 @@ function Header() {
 	return (
 		<header className="flex flex-col items-center mb-20 md:mb-20">
 			<Image
-				src={thirdwebIcon}
 				alt=""
 				width={120}
 				style={{
@@ -36,17 +35,17 @@ function Header() {
 			/>
 
 			<h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
-				Account Abstraction Examples
+				Sweydaverse Genesis Drop
 			</h1>
 
 			<p className="text-zinc-300 text-base">
-				Collection of ERC4337 examples using the thirdweb{" "}
+				Powered by{" "}
 				<a
 					className="text-purple-400"
 					target="_blank"
-					href="https://portal.thirdweb.com/connect"
+					href="https://bearified.xyz"
 				>
-					Connect SDK
+					BearifiedXYZ
 				</a>
 				.
 			</p>

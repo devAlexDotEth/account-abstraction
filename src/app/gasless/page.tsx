@@ -55,7 +55,7 @@ const GaslessHome: React.FC = () => {
 							<>
 								<p className="font-semibold text-center mb-2">
 									You own {ownedNfts?.[0]?.quantityOwned.toString() || "0"}{" "}
-									Kittens
+									Tigers
 								</p>
 								<TransactionButton
 									transaction={() =>
@@ -84,7 +84,7 @@ const GaslessHome: React.FC = () => {
 									marginTop: "10px",
 								}}
 							>
-								Login to claim this Kitten!
+								Login to claim this Tiger Stirke Drop!
 							</p>
 						)}
 					</>
