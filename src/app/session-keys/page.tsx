@@ -44,7 +44,7 @@ const AddSigner = () => {
 			</h1>
 			<ConnectButton
 				client={client}
-				accountAbstraction={accountAbstraction}
+				//accountAbstraction={accountAbstraction}
 				connectModal={{
 					size: "compact",
 				}}
