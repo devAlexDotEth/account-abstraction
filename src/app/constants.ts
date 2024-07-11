@@ -30,6 +30,12 @@ export const accountFactoryContract = getContract({
     client,
 });
 
+export const editionDropContract = getContract({
+    address: editionDropAddress,
+    chain,
+    client,
+});
+
 export const editionDropContract1 = getContract({
     address: editionDropAddress,
     chain,

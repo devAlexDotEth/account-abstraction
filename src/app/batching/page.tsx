@@ -12,7 +12,7 @@ import {
 	accountAbstraction,
 	client,
 	editionDropContract,
-	editionDropTokenId0,
+	editionDropTokenIds,
 	tokenDropContract,
 } from "../constants";
 import Link from "next/link";
@@ -33,7 +33,7 @@ const BatchingHome = () => {
 		{
 			contract: editionDropContract,
 			owner: smartAccount?.address!,
-			tokenId: editionDropTokenId,
+			tokenId: editionDropTokenIds,
 			queryOptions: { enabled: !!smartAccount },
 		},
 	);
@@ -44,7 +44,7 @@ const BatchingHome = () => {
 		const transactions = [
 			claimNFT({
 				contract: editionDropContract,
-				tokenId: editionDropTokenId0,
+				tokenId: editionDropTokenIds,
 				to: smartAccount.address,
 				quantity: 1n,
 			}),
