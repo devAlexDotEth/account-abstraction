@@ -15,6 +15,7 @@ import { resolveAddress } from "thirdweb/extensions/ens";
 import { getContract } from "thirdweb";
 import {
 	accountAbstraction,
+	accountFactoryAddress,
 	chain,
 	client,
 	editionDropAddress,
@@ -85,7 +86,7 @@ const AddSigner = () => {
 										name: walletToAdd,
 									}),
 									permissions: {
-										approvedTargets: [editionDropAddress],
+										approvedTargets: [accountFactoryAddress],
 									},
 								});
 							}}

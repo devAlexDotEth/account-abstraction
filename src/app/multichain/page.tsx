@@ -1,125 +1,121 @@
 "use client";
-import React from "react";
-import { balanceOf, claimTo, getNFT } from "thirdweb/extensions/erc1155";
+import React, { useState, useEffect } from "react";
+import { claimTo, getNFT, getOwnedNFTs } from "thirdweb/extensions/erc1155";
 import {
-	ConnectButton,
-	MediaRenderer,
-	TransactionButton,
-	useActiveAccount,
-	useReadContract,
+    ConnectButton,
+    MediaRenderer,
+    TransactionButton,
+    useActiveAccount,
+    useReadContract,
 } from "thirdweb/react";
-import { accountAbstraction, client, editionDropTokenId } from "../constants";
+import {
+    accountAbstraction,
+    client,
+    editionDropContract2,
+    editionDropTokenIds2, // Array of token IDs
+} from "../constants";
 import Link from "next/link";
-import { sepolia, base } from "thirdweb/chains";
-import { ThirdwebContract, getContract } from "thirdweb";
 
-const GaslessHome: React.FC = () => {
-	const smartAccount = useActiveAccount();
+const MultichainHome: React.FC = () => {
+    const smartAccount = useActiveAccount();
+    const [loadedNfts, setLoadedNfts] = useState<any[]>([]);
+    const [ownedNfts, setOwnedNfts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
-	return (
-		<div className="flex flex-col items-center">
-			<h1 className="text-center text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-12 text-zinc-100">
-				Multichain
-				<br />
-				Sponsored Transactions
-			</h1>
-			<ConnectButton
-				client={client}
-				//accountAbstraction={accountAbstraction}
-				connectModal={{
-					size: "compact",
-				}}
-			/>
+    useEffect(() => {
+        const fetchNfts = async () => {
+            const nftPromises = editionDropTokenIds2.map(tokenId =>
+                getNFT({ contract: editionDropContract2, tokenId }).catch(() => null)
+            );
+            const nfts = await Promise.all(nftPromises);
+            setLoadedNfts(nfts.filter(nft => nft !== null));
 
-			<div className="flex flex-row">
-				<NFTClaimer
-					receiverAddress={smartAccount?.address}
-					dropContract={getContract({
-						address: "0x4cc9192572D4C6D4721FD13AbEa363d3274aDA92",
-						chain: sepolia,
-						client,
-					})}
-					tokenId={0n}
-				/>
-				<div className="h-auto w-[1px] bg-gray-600 mx-12 mt-8" />
-				<NFTClaimer
-					receiverAddress={smartAccount?.address}
-					dropContract={getContract({
-						address: "0x79F07c16a7B3DC8a75F5032e5d86092deD2BcAC2",
-						chain: base,
-						client,
-					})}
-					tokenId={0n}
-				/>
-			</div>
+            if (smartAccount) {
+                const ownedNftPromises = editionDropTokenIds2.map(tokenId =>
+                    getOwnedNFTs({ contract: editionDropContract2, address: smartAccount.address }).catch(() => null)
+                );
+                const owned = await Promise.all(ownedNftPromises);
+                setOwnedNfts(owned);
+            }
 
-			<Link href={"/"} className="text-sm text-gray-400 mt-8">
-				Back to menu
-			</Link>
-		</div>
-	);
+            setLoading(false);
+        };
+        fetchNfts();
+    }, [smartAccount]);
+
+    return (
+        <div className="flex flex-col items-center">
+            <h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-12 text-zinc-100">
+                Multichain Drops
+            </h1>
+            <ConnectButton
+                client={client}
+                //accountAbstraction={accountAbstraction}
+                connectModal={{
+                    size: "compact",
+                }}
+            />
+            {loading ? (
+                <p>Loading...</p>
+            ) : (
+                <div className="flex flex-wrap justify-center space-x-10 mt-8">
+                    {loadedNfts.map((nft, index) => {
+                        const tokenId = editionDropTokenIds2[index];
+
+                        return (
+                            <div key={index} className="flex flex-col items-center m-4">
+                                <MediaRenderer
+                                    client={client}
+                                    src={nft.metadata.image}
+                                    style={{ width: "100%", marginTop: "10px" }}
+                                />
+                                {smartAccount ? (
+                                    <>
+                                        <p className="font-semibold text-center mb-2">
+                                            You own {ownedNfts[index]?.[0]?.quantityOwned.toString() || "0"}{" "}
+                                            Digital Genesis on Base {index}
+                                        </p>
+                                        <TransactionButton
+                                            transaction={() =>
+                                                claimTo({
+                                                    contract: editionDropContract2,
+                                                    tokenId,
+                                                    to: smartAccount.address,
+                                                    quantity: 1n,
+                                                })
+                                            }
+                                            onError={(error) => {
+                                                alert(`Error: ${error.message}`);
+                                            }}
+                                            onTransactionConfirmed={async () => {
+                                                alert("Claim successful!");
+                                            }}
+                                        >
+                                            Claim!
+                                        </TransactionButton>
+                                    </>
+                                ) : (
+                                    <p
+                                        style={{
+                                            textAlign: "center",
+                                            width: "100%",
+                                            marginTop: "10px",
+                                        }}
+                                    >
+                                        Login to claim this Digital Genesis on Base {index} Drop!
+                                    </p>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+
+            <Link href={"/"} className="text-sm text-gray-400 mt-8">
+                Back to menu
+            </Link>
+        </div>
+    );
 };
 
-type NFTClaimerProps = {
-	receiverAddress?: string;
-	dropContract: ThirdwebContract;
-	tokenId: bigint;
-};
-
-const NFTClaimer: React.FC<NFTClaimerProps> = (props: NFTClaimerProps) => {
-	const { data: nft, isLoading: isNftLoading } = useReadContract(getNFT, {
-		contract: props.dropContract,
-		tokenId: props.tokenId,
-	});
-	const { data: ownedNfts } = useReadContract(balanceOf, {
-		contract: props.dropContract,
-		owner: props.receiverAddress!,
-		tokenId: props.tokenId,
-		queryOptions: { enabled: !!props.receiverAddress },
-	});
-	return (
-		<div className="flex flex-col my-8">
-			{isNftLoading ? (
-				<div className="w-full mt-24">Loading...</div>
-			) : (
-				<>
-					{nft ? (
-						<MediaRenderer client={client} src={nft.metadata.image} />
-					) : null}
-					{props.receiverAddress ? (
-						<>
-							<p className="font-semibold text-center my-2">
-								You own {ownedNfts?.toString() || "0"} Tigers on{" "}
-								{props.dropContract.chain.name}
-							</p>
-							<TransactionButton
-								transaction={() =>
-									claimTo({
-										contract: props.dropContract,
-										tokenId: props.tokenId,
-										to: props.receiverAddress!,
-										quantity: 1n,
-									})
-								}
-								onError={(error) => {
-									alert(`Error: ${error.message}`);
-								}}
-								onTransactionConfirmed={async () => {
-									alert("Claim successful!");
-								}}
-							>
-								Claim!
-							</TransactionButton>
-						</>
-					) : (
-						<p className="text-center mt-8">
-							Login to claim this Tiger on {props.dropContract.chain.name}!
-						</p>
-					)}
-				</>
-			)}
-		</div>
-	);
-};
-
-export default GaslessHome;
+export default MultichainHome;

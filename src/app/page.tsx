@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ConnectButton } from "thirdweb/react";
-import thirdwebIcon from "@public/thirdweb.svg";
+import devAlex from "@public/devAlex.svg";
 import { accountAbstraction, client } from "./constants";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ function Header() {
 	return (
 		<header className="flex flex-col items-center mb-20 md:mb-20">
 			<Image
-				src={thirdwebIcon}
+				src={devAlex}
 				alt=""
 				width={120}
 				style={{
@@ -36,7 +36,14 @@ function Header() {
 			/>
 
 			<h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
-				Sweydaverse Genesis Drop
+				AI Art by {" "}
+				<a
+					className="text-purple-400"
+					target="_blank"
+					href="https://x.com/AlexDotEth"
+				>
+					devAlex
+				</a>
 			</h1>
 
 			<p className="text-zinc-300 text-base">
@@ -58,27 +65,27 @@ function Menu() {
 	return (
 		<div className="grid gap-4 lg:grid-cols-3 justify-center">
 			<MenuItem
-				title="Sponsored transactions"
+				title="Sponsored (FREE MINTS)"
 				href="/gasless"
-				description="Execute transactions without requiring users to hold ETH."
+				description="Execute transactions just pay cents in gas.(Gasless coming soon)"
 			/>
 
 			<MenuItem
-				title="Multichain transactions"
+				title="Multichain Drops"
 				href="/multichain"
-				description="Execute transactions on different chains maintaining the same smart account address."
+				description="Discover Mints on different chains while maintaining the same smart account address."
 			/>
 
 			<MenuItem
-				title="Session keys"
-				href="/session-keys"
-				description="Add other admins and signers to your smart accounts"
+				title="AI Art Generator"
+				href="/"
+				description="Coming Soon..."
 			/>
 
 			<MenuItem
-				title="Batching transactions"
-				href="/batching"
-				description="Execute multiple transactions atomically."
+				title="Rewards"
+				href="/"
+				description="Q4 2024..."
 			/>
 		</div>
 	);
@@ -104,7 +111,7 @@ function Footer() {
 			<Link
 				className="text-center text-sm text-gray-400"
 				target="_blank"
-				href="https://github.com/thirdweb-example/account-abstraction"
+				href="https://github.com/devAlexDotEth/account-abstraction"
 			>
 				View code on GitHub
 			</Link>

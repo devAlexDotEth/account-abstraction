@@ -12,7 +12,7 @@ import {
 	accountAbstraction,
 	client,
 	editionDropContract,
-	editionDropTokenId,
+	editionDropTokenId0,
 	tokenDropContract,
 } from "../constants";
 import Link from "next/link";
@@ -44,7 +44,7 @@ const BatchingHome = () => {
 		const transactions = [
 			claimNFT({
 				contract: editionDropContract,
-				tokenId: editionDropTokenId,
+				tokenId: editionDropTokenId0,
 				to: smartAccount.address,
 				quantity: 1n,
 			}),
