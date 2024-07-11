@@ -6,13 +6,12 @@ import {
     MediaRenderer,
     TransactionButton,
     useActiveAccount,
-    useReadContract,
 } from "thirdweb/react";
 import {
     accountAbstraction,
     client,
-    editionDropContract2,
-    editionDropTokenIds2, // Array of token IDs
+    editionDropContract,
+    editionDropTokenIds, // Array of token IDs
 } from "../constants";
 import Link from "next/link";
 
@@ -24,15 +23,15 @@ const MultichainHome: React.FC = () => {
 
     useEffect(() => {
         const fetchNfts = async () => {
-            const nftPromises = editionDropTokenIds2.map(tokenId =>
-                getNFT({ contract: editionDropContract2, tokenId }).catch(() => null)
+            const nftPromises = editionDropTokenIds.map(tokenId =>
+                getNFT({ contract: editionDropContract, tokenId }).catch(() => null)
             );
             const nfts = await Promise.all(nftPromises);
             setLoadedNfts(nfts.filter(nft => nft !== null));
 
             if (smartAccount) {
-                const ownedNftPromises = editionDropTokenIds2.map(tokenId =>
-                    getOwnedNFTs({ contract: editionDropContract2, address: smartAccount.address }).catch(() => null)
+                const ownedNftPromises = editionDropTokenIds.map(tokenId =>
+                    getOwnedNFTs({ contract: editionDropContract, address: smartAccount.address }).catch(() => null)
                 );
                 const owned = await Promise.all(ownedNftPromises);
                 setOwnedNfts(owned);
@@ -60,7 +59,7 @@ const MultichainHome: React.FC = () => {
             ) : (
                 <div className="flex flex-wrap justify-center space-x-10 mt-8">
                     {loadedNfts.map((nft, index) => {
-                        const tokenId = editionDropTokenIds2[index];
+                        const tokenId = editionDropTokenIds[index];
 
                         return (
                             <div key={index} className="flex flex-col items-center m-4">
@@ -78,7 +77,7 @@ const MultichainHome: React.FC = () => {
                                         <TransactionButton
                                             transaction={() =>
                                                 claimTo({
-                                                    contract: editionDropContract2,
+                                                    contract: editionDropContract,
                                                     tokenId,
                                                     to: smartAccount.address,
                                                     quantity: 1n,
