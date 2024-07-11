@@ -1,3 +1,4 @@
+/*
 "use client";
 import React, { useState, useEffect } from "react";
 import { claimTo, getNFT, getOwnedNFTs } from "thirdweb/extensions/erc1155";
@@ -119,3 +120,4 @@ const BatchingHome: React.FC = () => {
 };
 
 export default BatchingHome;
+*/
