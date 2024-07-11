@@ -21,7 +21,7 @@ export const editionDropAddress = "0x7f5EE10f182060a881FA8467FADca3cE87267868";
 export const editionDropAddress2 = "";
 
 export const editionDropTokenIds = Array.from({ length: 4 }, (_, i) => BigInt(i)); // Adjust length as needed
-export const editionDropTokenIds2 = Array.from({ length: 4 }, (_, i) => BigInt(i)); // Adjust length as needed
+export const editionDropTokenIds2 = Array.from({ length: 0 }, (_, i) => BigInt(i)); // Adjust length as needed
 
 
 export const accountFactoryContract = getContract({
