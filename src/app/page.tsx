@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ConnectButton } from "thirdweb/react";
-import devAlex from "@public/devAlex.svg";
+import sweyda from "@public/sweyda.svg";
 import { accountAbstraction, client } from "./constants";
 import Link from "next/link";
 
@@ -27,7 +27,7 @@ function Header() {
 	return (
 		<header className="flex flex-col items-center mb-20 md:mb-20">
 			<Image
-				src={devAlex}
+				src={sweyda}
 				alt=""
 				width={120}
 				style={{
@@ -36,13 +36,13 @@ function Header() {
 			/>
 
 			<h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-6 text-zinc-100">
-				AI Art by {" "}
+				SWEYDA • {" "}
 				<a
 					className="text-purple-400"
 					target="_blank"
 					href="https://x.com/AlexDotEth"
 				>
-					devAlex
+					Jared Mirabile
 				</a>
 			</h1>
 
@@ -65,19 +65,19 @@ function Menu() {
 	return (
 		<div className="grid gap-4 lg:grid-cols-3 justify-center">
 			<MenuItem
-				title="Sponsored (FREE MINTS)"
-				href="/gasless"
-				description="Execute transactions just pay cents in gas.(Gasless coming soon)"
+				title="Phase 1: Genesis Drop"
+				href="/genesis"
+				description="Tiger Stirke | Cyber Kitty | Oni Warrior | Love of Money | Ronin Boss"
 			/>
 
 			<MenuItem
-				title="Multichain Drops"
-				href="/multichain"
-				description="Discover Mints on different chains while maintaining the same smart account address."
+				title="Phase 2: We are Tigers (Phase 1 Demo Option 2)"
+				href="/tigers"
+				description="Generative Art Digital Collectibles representing the Tiger Spirit"
 			/>
 
 			<MenuItem
-				title="AI Art Generator"
+				title="Phase 3: TBD"
 				href="/"
 				description="Coming Soon..."
 			/>
@@ -85,7 +85,7 @@ function Menu() {
 			<MenuItem
 				title="Rewards"
 				href="/"
-				description="Q4 2024..."
+				description="End of Q1 2025..."
 			/>
 		</div>
 	);

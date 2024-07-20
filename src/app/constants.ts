@@ -15,12 +15,12 @@ export const client = createThirdwebClient({
 });
 
 export const chain = base;
-export const accountFactoryAddress = "0x90494E880716692ff019805b0C59D1f8f3838F06";
+export const accountFactoryAddress = "0x34562c58F8430A25b724Be814Af5cc3482080d51";
 export const tokenDropAddress = "0xd64A548A82c190083707CBEFD26958E5e6551D18";
-export const editionDropAddress = "0x7f5EE10f182060a881FA8467FADca3cE87267868";
+export const editionDropAddress = "0x79F07c16a7B3DC8a75F5032e5d86092deD2BcAC2";
 export const editionDropAddress2 = "";
 
-export const editionDropTokenIds = Array.from({ length: 4 }, (_, i) => BigInt(i)); // Adjust length as needed
+export const editionDropTokenIds = Array.from({ length: 5 }, (_, i) => BigInt(i)); // Adjust length as needed
 export const editionDropTokenIds2 = Array.from({ length: 0 }, (_, i) => BigInt(i)); // Adjust length as needed
 
 

@@ -6,8 +6,8 @@ import { ThirdwebProvider } from "thirdweb/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Art by devAlex | BEARIFIED",
-  description: "AI Art by devAlex using the thirdweb Connect SDK Powered By BearifiedXYZ",
+  title: "SWEYDA | Jared Mirabile",
+  description: "Jared Mirabile | Vision•Passion•Quality•Power",
 };
 
 export default function RootLayout({

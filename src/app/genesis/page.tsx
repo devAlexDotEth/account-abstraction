@@ -13,7 +13,7 @@ import {
 import { accountAbstraction, client, editionDropContract, editionDropTokenIds } from "../constants";
 import Link from "next/link";
 
-const GaslessHome: React.FC = () => {
+const GenesisHome: React.FC = () => {
   const smartAccount = useActiveAccount();
   const [loadedNfts, setLoadedNfts] = useState<any[]>([]);
   const [ownedNfts, setOwnedNfts] = useState<Record<string, any>>({});
@@ -53,7 +53,7 @@ const GaslessHome: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-2xl md:text-6xl font-semibold md:font-bold tracking-tighter mb-12 text-zinc-100">
-        FREE Mints
+        Genesis Drop
       </h1>
       <ConnectButton
         client={client}
@@ -118,4 +118,4 @@ const GaslessHome: React.FC = () => {
   );
 };
 
-export default GaslessHome;
+export default GenesisHome;
