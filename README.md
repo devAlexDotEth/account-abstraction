@@ -10,7 +10,7 @@ Showcases how to build:
 
 ## Live demo
 
-[Play around with the live preview](https://account-abstraction-nine.vercel.app/)
+[Play around with the live production](https://www.devalex.art//)
 
 ## Running locally
 
