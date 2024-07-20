@@ -4,7 +4,7 @@ import { SmartWalletOptions } from "thirdweb/wallets";
 
 // Replace this with your client ID string
 // refer to https://portal.thirdweb.com/typescript/v5/client on how to get a client ID
-const clientId = "95d1288f8cb4a1a420a4739f0886ed62";
+const clientId = process.env.NEXT_PUBLIC_TEMPLATE_CLIENT_ID;
 
 if (!clientId) {
     throw new Error("No client ID provided");
