@@ -32,7 +32,7 @@ const ImageEl = styled.img`
 `;
 
 const Tile: React.FC<Props> = ({ title, image = Placeholder, localStyles, ...props }) => {
-  return <Outer localStyles={localStyles} {...props}><ImageEl src={image} alt={title} /></Outer>;
+  return <Outer localStyles={localStyles} {...props}><ImageEl src={"devAlex.svg"} alt={title} /></Outer>;
 };
 
 export default Tile;
