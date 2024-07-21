@@ -148,7 +148,7 @@ const Card: FC<Props> = ({ localStyles, pfp = PFP, description = "Collection Siz
   return (
     <El localStyles={localStyles} {...props}>
       <Content direction={direction}>
-        <Image direction={direction} src={pfp} alt={heading} />
+        <Image direction={direction} src={"devAlex.svg"} alt={heading} />
         <Inner direction={direction}>
           <HeadingGroup direction={direction} localStyles={{width: 'auto'}}>
             <Heading level="4">{heading}</Heading>
