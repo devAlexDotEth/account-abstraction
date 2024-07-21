@@ -105,7 +105,7 @@ const Banner: FC<Props> = ({ localStyles, pfp = PFP, children, heading = "Title"
   return (
     <El localStyles={localStyles} {...props}>
       <Content>
-        <Image src={pfp} alt={heading} />
+        <Image src={"pfp"} alt={heading} />
         <HeadingGroup>
           <Stack direction='VERTICAL' space={0} localStyles={{alignItems: 'center', textAlign: 'center', '@media (min-width: 800px)' :{ alignItems: 'start'}}}>
             <Heading level="3">{heading}</Heading>
